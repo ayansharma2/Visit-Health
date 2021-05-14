@@ -19,6 +19,8 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,16 +39,19 @@ public class MainActivity extends AppCompatActivity {
                 mChart.setPinchZoom(true);
                 ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
                 ArrayList<Entry> values = new ArrayList<>();
-                values.add(new Entry(1, 50));
-                values.add(new Entry(2, 65));
-                values.add(new Entry(3,75));
-                values.add(new Entry(4,63));
-                values.add(new Entry(5,70));
-                values.add(new Entry(6,60));
-                values.add(new Entry(7,61));
+                values.add(new Entry(1, 68));
+                values.add(new Entry(2, 68));
+                values.add(new Entry(3,66));
+                values.add(new Entry(4,67));
+                values.add(new Entry(5,66));
+
+
                 LineDataSet lineDataSet=new LineDataSet(values," ");
+                lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+                lineDataSet.setDrawCircles(false);
                 lineDataSet.setLineWidth(3);
-                lineDataSet.setColor(Color.YELLOW);
+                lineDataSet.setDrawValues(false);
+                lineDataSet.setColor(Color.parseColor("#714fff"));
                 dataSets.add(lineDataSet);
                 lineDataSet.setValueTextSize(9);
 
@@ -54,16 +59,18 @@ public class MainActivity extends AppCompatActivity {
 
 
                 ArrayList<Entry> values1=new ArrayList<>();
-                values1.add(new Entry(1,60));
-                values1.add(new Entry(2,45));
-                values1.add(new Entry(3,56));
-                values1.add(new Entry(4,60));
-                values1.add(new Entry(5,55));
+
+                values1.add(new Entry(5,66));
+                values1.add(new Entry(6,64));
+                values1.add(new Entry(7,63));
                 LineDataSet lineDataSet1=new LineDataSet(values1,"");
-                lineDataSet1.enableDashedLine(45,10,0);
+                lineDataSet1.enableDashedLine(25,10,0);
                 lineDataSet1.setLineWidth(3);
-                lineDataSet1.setColor(Color.GREEN);
+                lineDataSet1.setColor(Color.parseColor("#ff865c"));
                 lineDataSet1.setValueTextSize(9);
+                lineDataSet1.setDrawValues(false);
+                lineDataSet1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+                lineDataSet1.setDrawCircles(false);
                 dataSets.add(lineDataSet1);
                 mChart.getDescription().setEnabled(false);
                 mChart.getLegend().setEnabled(false);
@@ -78,16 +85,14 @@ public class MainActivity extends AppCompatActivity {
 
 
                 ArrayList<Entry> values2=new ArrayList<>();
-                values2.add(new Entry(1,50));
-                values2.add(new Entry(2,50));
-                values2.add(new Entry(3,50));
-                values2.add(new Entry(4,50));
-                values2.add(new Entry(5,50));
-                values2.add(new Entry(6,50));
-                values2.add(new Entry(7,50));
+                values2.add(new Entry(1,62));
+                values2.add(new Entry(7,62));
                 LineDataSet lineDataSet2=new LineDataSet(values2,"");
-                lineDataSet2.enableDashedLine(50,10,0);
-                lineDataSet2.setColor(Color.MAGENTA);
+                lineDataSet2.enableDashedLine(25,10,0);
+                lineDataSet2.setColor(Color.parseColor("#7fb2ff"));
+                lineDataSet2.setDrawValues(false);
+                lineDataSet2.setDrawCircles(false);
+                lineDataSet2.setLineWidth(3);
                 dataSets.add(lineDataSet2);
                 final ArrayList<String> xAxisLabel = new ArrayList<>();
                 xAxisLabel.add("");
@@ -99,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 xAxisLabel.add("Jun");
                 xAxisLabel.add("Jul");
                 XAxis xAxis = mChart.getXAxis();
-
+                xAxis.setGranularity(1f);
                 YAxis yAxis=mChart.getAxisLeft();
                 yAxis.setValueFormatter(new ValueFormatter() {
                     @Override
@@ -114,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 LineData lineData=new LineData(dataSets);
+
                 mChart.setData(lineData);
                 //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
