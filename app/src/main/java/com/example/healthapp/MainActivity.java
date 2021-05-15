@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<Entry> values1=new ArrayList<>();
 
                 values1.add(new Entry(5,66));
-                values1.add(new Entry(6,64));
+                values1.add(new Entry(6,65));
                 values1.add(new Entry(7,63));
                 LineDataSet lineDataSet1=new LineDataSet(values1,"");
                 lineDataSet1.enableDashedLine(25,10,0);
@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
                 ArrayList<Entry> values2=new ArrayList<>();
                 values2.add(new Entry(1,62));
+                values2.add(new Entry(2,62));
+                values2.add(new Entry(4,62));
                 values2.add(new Entry(7,62));
                 LineDataSet lineDataSet2=new LineDataSet(values2,"");
                 lineDataSet2.enableDashedLine(25,10,0);
@@ -105,7 +107,9 @@ public class MainActivity extends AppCompatActivity {
                 xAxisLabel.add("Jul");
                 XAxis xAxis = mChart.getXAxis();
                 xAxis.setGranularity(1f);
+                xAxis.setTextColor(R.color.gray);
                 YAxis yAxis=mChart.getAxisLeft();
+                yAxis.setTextColor(R.color.gray);
                 yAxis.setValueFormatter(new ValueFormatter() {
                     @Override
                     public String getFormattedValue(float value) {
